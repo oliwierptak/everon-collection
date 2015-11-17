@@ -13,6 +13,9 @@ use Everon\Component\Collection\Collection;
 
 class CollectionTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var array
+     */
     protected $arrayFixture = [
         'foo' => 1,
         'bar' => 'barValue',
