@@ -174,4 +174,93 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $Collection->toArray(true));
     }
+
+    public function test_sort_values_ascending()
+    {
+        $Collection = new Collection([
+            'bar' => 3,
+            'foo' => 1,
+            'fuzz' => 2
+        ]);
+
+        $Collection->sortValues();
+
+        $expected = [
+            'foo' => 1,
+            'fuzz' => 2,
+            'bar' => 3
+        ];
+
+        $this->assertTrue($expected === $Collection->toArray());
+    }
+
+    public function test_sort_values_descending()
+    {
+        $Collection = new Collection([
+            'bar' => 3,
+            'foo' => 1,
+            'fuzz' => 2
+        ]);
+
+        $Collection->sortValues(false);
+
+        $expected = [
+            'bar' => 3,
+            'fuzz' => 2,
+            'foo' => 1
+        ];
+
+        $this->assertTrue($expected === $Collection->toArray());
+    }
+
+    public function test_sort_keys_ascending()
+    {
+        $Collection = new Collection($this->arrayFixture);
+
+        $Collection->sortKeys();
+
+        $expected = [
+            'bar' => 'barValue',
+            'foo' => 1,
+            'fuzz' => null
+        ];
+
+        $this->assertTrue($expected === $Collection->toArray());
+    }
+
+    public function test_sort_keys_descending()
+    {
+        $Collection = new Collection($this->arrayFixture);
+
+        $Collection->sortKeys(false);
+
+        $expected = [
+            'fuzz' => null,
+            'foo' => 1,
+            'bar' => 'barValue'
+        ];
+
+        $this->assertTrue($expected === $Collection->toArray());
+    }
+
+    public function test_sort_by()
+    {
+        $Collection = new Collection([
+            'fuzz' => 2,
+            'bar' => 3,
+            'foo' => 1
+        ]);
+
+        $Collection->sortBy(function($a, $b) {
+            return strcasecmp($a, $b);
+        });
+
+        $expected = [
+            'bar' => 3,
+            'foo' => 1,
+            'fuzz' => 2,
+        ];
+
+        $this->assertTrue($expected === $Collection->toArray());
+    }
 }

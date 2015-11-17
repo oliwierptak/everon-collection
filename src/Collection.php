@@ -109,6 +109,16 @@ class Collection implements \Countable, \ArrayAccess, \IteratorAggregate, Arraya
     }
 
     /**
+     * @param array $data
+     *
+     * @return void
+     */
+    public function collect(array $data)
+    {
+        $this->data = $data;
+    }
+
+    /**
      * @inheritdoc
      */
     public function get($name, $default=null)
@@ -149,6 +159,40 @@ class Collection implements \Countable, \ArrayAccess, \IteratorAggregate, Arraya
     public function set($name, $value)
     {
         $this->offsetSet($name, $value);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function sortValues($ascending=true, $flags=SORT_REGULAR)
+    {
+        if ($ascending) {
+            asort($this->data, $flags);
+        }
+        else {
+            arsort($this->data, $flags);
+        }
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function sortKeys($ascending=true, $flags=SORT_REGULAR)
+    {
+        if ($ascending) {
+            ksort($this->data, $flags);
+        }
+        else {
+            krsort($this->data, $flags);
+        }
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function sortBy(\Closure $sortRoutine)
+    {
+        uksort($this->data, $sortRoutine);
     }
 
 }
