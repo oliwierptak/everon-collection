@@ -20,8 +20,7 @@
     ]
   },
   "require": {
-    "php": ">=7.0",
-    "everon/everon": "dev-development"
+    "php": ">=7.0"
   },
   "require-dev": {
     "phpunit/phpunit": "*",
