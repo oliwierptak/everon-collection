@@ -17,12 +17,38 @@ interface CollectionInterface extends ArrayableInterface
      * @param mixed $item
      */
     function append($item);
-        
+
+    /**
+     * @param array $data
+     *
+     * @return void
+     */
+    public function appendArray(array $data);
+
+    /**
+     * @param CollectionInterface $Collection
+     *
+     * @return void
+     */
+    public function appendCollection(CollectionInterface $Collection);
+
+    /**
+     * @param $name
+     * @param null $default
+     * @return mixed|null
+     */
+    function get($name, $default=null);
+
     /**
      * @param $name
      * @return bool
      */
     function has($name);
+
+    /**
+     * @return bool
+     */
+    function isEmpty();
 
     /**
      * @param $name
@@ -34,16 +60,4 @@ interface CollectionInterface extends ArrayableInterface
      * @param $value
      */
     function set($name, $value);
-
-    /**
-     * @param $name
-     * @param null $default
-     * @return null
-     */
-    function get($name, $default=null);
-
-    /**
-     * @return bool
-     */
-    function isEmpty();
 }

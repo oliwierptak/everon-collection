@@ -16,5 +16,5 @@ interface ArrayableInterface
      * @param bool $deep
      * @return array
      */
-    function toArray($deep);
+    function toArray($deep = false);
 }
