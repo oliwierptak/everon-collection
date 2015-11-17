@@ -85,7 +85,7 @@ class Collection implements \Countable, \ArrayAccess, \IteratorAggregate, Arraya
     }
 
     /**
-     * @param mixed $item
+     * @inheritdoc
      */
     public function append($item)
     {
@@ -95,25 +95,17 @@ class Collection implements \Countable, \ArrayAccess, \IteratorAggregate, Arraya
     /**
      * @inheritdoc
      */
-    public function has($name)
+    public function appendArray(array $data)
     {
-        return $this->offsetExists($name);
+        $this->data += $data;
     }
 
     /**
      * @inheritdoc
      */
-    public function remove($name)
+    public function appendCollection(CollectionInterface $Collection)
     {
-        $this->offsetUnset($name);
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function set($name, $value)
-    {
-        $this->offsetSet($name, $value);
+        $this->data += $Collection->toArray();
     }
 
     /**
@@ -131,9 +123,32 @@ class Collection implements \Countable, \ArrayAccess, \IteratorAggregate, Arraya
     /**
      * @inheritdoc
      */
+    public function has($name)
+    {
+        return $this->offsetExists($name);
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function isEmpty()
     {
         return empty($this->data);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function remove($name)
+    {
+        $this->offsetUnset($name);
+    }
+    /**
+     * @inheritdoc
+     */
+    public function set($name, $value)
+    {
+        $this->offsetSet($name, $value);
     }
 
 }
