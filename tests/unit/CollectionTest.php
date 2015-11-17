@@ -19,10 +19,10 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         'fuzz' => null
     ];
 
-    public function testArrayInterfaces()
+    public function test_collection_is_countable()
     {
         $Collection = new Collection($this->arrayFixture);
 
-        $this->assertInstanceOf('Everon\Component\Collection\CollectionInterface', $Collection);
+        $this->assertInstanceOf('\Countable', $Collection);
     }
 }
