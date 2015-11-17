@@ -19,7 +19,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     protected $arrayFixture = [
         'foo' => 1,
         'bar' => 'barValue',
-        'fuzz' => null
+        'fuzz' => null,
     ];
 
     public function test_collection_has_Countable_interface()
@@ -67,7 +67,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $Collection = new Collection($this->arrayFixture);
 
         $new_data = [
-            'foobar' => 100
+            'foobar' => 100,
         ];
 
         $Collection->appendArray($new_data);
@@ -82,7 +82,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $Collection = new Collection($this->arrayFixture);
 
         $new_data = [
-            'foobar' => 100
+            'foobar' => 100,
         ];
 
         $Collection->appendCollection(new Collection($new_data));
@@ -158,7 +158,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
                     'bar_nested' => 200,
                 ]),
             ]),
-            'bar' => 'bar'
+            'bar' => 'bar',
         ];
 
         $Collection = new Collection($data);
@@ -169,10 +169,10 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
                 'bar_nested' => 100,
                 'nested_collection' => [
                     'foo_nested' => 200,
-                    'bar_nested' => 200
-                ]
+                    'bar_nested' => 200,
+                ],
             ],
-            'bar' => 'bar'
+            'bar' => 'bar',
         ];
 
         $this->assertEquals($expected, $Collection->toArray(true));
@@ -183,7 +183,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $Collection = new Collection([
             'bar' => 3,
             'foo' => 1,
-            'fuzz' => 2
+            'fuzz' => 2,
         ]);
 
         $Collection->sortValues();
@@ -191,7 +191,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $expected = [
             'foo' => 1,
             'fuzz' => 2,
-            'bar' => 3
+            'bar' => 3,
         ];
 
         $this->assertTrue($expected === $Collection->toArray());
@@ -202,7 +202,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $Collection = new Collection([
             'bar' => 3,
             'foo' => 1,
-            'fuzz' => 2
+            'fuzz' => 2,
         ]);
 
         $Collection->sortValues(false);
@@ -210,7 +210,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $expected = [
             'bar' => 3,
             'fuzz' => 2,
-            'foo' => 1
+            'foo' => 1,
         ];
 
         $this->assertTrue($expected === $Collection->toArray());
@@ -225,7 +225,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $expected = [
             'bar' => 'barValue',
             'foo' => 1,
-            'fuzz' => null
+            'fuzz' => null,
         ];
 
         $this->assertTrue($expected === $Collection->toArray());
@@ -240,7 +240,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $expected = [
             'fuzz' => null,
             'foo' => 1,
-            'bar' => 'barValue'
+            'bar' => 'barValue',
         ];
 
         $this->assertTrue($expected === $Collection->toArray());
@@ -251,10 +251,10 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $Collection = new Collection([
             'fuzz' => 2,
             'bar' => 3,
-            'foo' => 1
+            'foo' => 1,
         ]);
 
-        $Collection->sortBy(function($a, $b) {
+        $Collection->sortBy(function ($a, $b) {
             return strcasecmp($a, $b);
         });
 
