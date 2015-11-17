@@ -33,6 +33,13 @@ interface CollectionInterface extends ArrayableInterface
     public function appendCollection(CollectionInterface $Collection);
 
     /**
+     * @param array $data
+     *
+     * @return void
+     */
+    public function collect(array $data);
+
+    /**
      * @param $name
      * @param null $default
      * @return mixed|null
@@ -60,4 +67,28 @@ interface CollectionInterface extends ArrayableInterface
      * @param $value
      */
     function set($name, $value);
+
+    /**
+     * @param bool|true $ascending
+     * @param int $flags
+     *
+     * @return void
+     */
+    public function sortValues($ascending=true, $flags=SORT_REGULAR);
+
+    /**
+     * @param bool|true $ascending
+     * @param int $flags
+     *
+     * @return void
+     */
+    public function sortKeys($ascending=true, $flags=SORT_REGULAR);
+
+    /**
+     * @param \Closure $sortRoutine
+     *
+     * @return void
+     */
+    public function sortBy(\Closure $sortRoutine);
+
 }
