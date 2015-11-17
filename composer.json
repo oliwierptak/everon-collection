@@ -11,9 +11,9 @@
   "minimum-stability": "dev",
   "autoload": {
     "psr-4": {
-      "Everon\\Componnent\\Collection\\": "src/",
-      "Everon\\Componnent\\Collection\\Helper\\": "src/Helper/",
-      "Everon\\Componnent\\Collection\\Tests\\": "tests/"
+      "Everon\\Component\\Collection\\": "src/",
+      "Everon\\Component\\Collection\\Helper\\": "src/Helper/",
+      "Everon\\Component\\Collection\\Tests\\": "tests/"
     },
     "exclude-from-classmap": [
       "/tests/"
