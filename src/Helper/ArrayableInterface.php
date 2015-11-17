@@ -9,12 +9,12 @@
  */
 namespace Everon\Component\Collection\Helper;
 
-
 interface ArrayableInterface
 {
     /**
      * @param bool $deep
+     *
      * @return array
      */
-    function toArray($deep = false);
+    public function toArray($deep = false);
 }

@@ -13,19 +13,19 @@ trait IsIterable
 {
     /**
      * @param $input
+     *
      * @return bool
      */
     protected function isIterable($input)
     {
-        if (isset($input) && is_array($input)) {//isset is much faster
+        if (isset($input) && is_array($input)) {
             return true;
         }
-        
+
         if ($input instanceof \ArrayAccess || $input instanceof \Iterator) {
             return true;
         }
-        
+
         return false;
     }
-
 }

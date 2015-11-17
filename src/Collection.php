@@ -12,7 +12,6 @@ namespace Everon\Component\Collection;
 use Everon\Component\Collection\Helper\ArrayableInterface;
 use Everon\Component\Collection\Helper\ToArray;
 
-
 class Collection implements \Countable, \ArrayAccess, \IteratorAggregate, ArrayableInterface, CollectionInterface
 {
     use ToArray;
@@ -37,7 +36,7 @@ class Collection implements \Countable, \ArrayAccess, \IteratorAggregate, Arraya
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function count()
     {
@@ -45,7 +44,7 @@ class Collection implements \Countable, \ArrayAccess, \IteratorAggregate, Arraya
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function offsetExists($offset)
     {
@@ -53,7 +52,7 @@ class Collection implements \Countable, \ArrayAccess, \IteratorAggregate, Arraya
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function offsetGet($offset)
     {
@@ -61,7 +60,7 @@ class Collection implements \Countable, \ArrayAccess, \IteratorAggregate, Arraya
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function offsetSet($offset, $value)
     {
@@ -69,7 +68,7 @@ class Collection implements \Countable, \ArrayAccess, \IteratorAggregate, Arraya
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function offsetUnset($offset)
     {
@@ -77,7 +76,7 @@ class Collection implements \Countable, \ArrayAccess, \IteratorAggregate, Arraya
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function getIterator()
     {
@@ -85,7 +84,7 @@ class Collection implements \Countable, \ArrayAccess, \IteratorAggregate, Arraya
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function append($item)
     {
@@ -93,7 +92,7 @@ class Collection implements \Countable, \ArrayAccess, \IteratorAggregate, Arraya
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function appendArray(array $data)
     {
@@ -101,7 +100,7 @@ class Collection implements \Countable, \ArrayAccess, \IteratorAggregate, Arraya
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function appendCollection(CollectionInterface $Collection)
     {
@@ -119,7 +118,7 @@ class Collection implements \Countable, \ArrayAccess, \IteratorAggregate, Arraya
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function get($name, $default=null)
     {
@@ -131,7 +130,7 @@ class Collection implements \Countable, \ArrayAccess, \IteratorAggregate, Arraya
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function has($name)
     {
@@ -139,7 +138,7 @@ class Collection implements \Countable, \ArrayAccess, \IteratorAggregate, Arraya
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function isEmpty()
     {
@@ -147,14 +146,14 @@ class Collection implements \Countable, \ArrayAccess, \IteratorAggregate, Arraya
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function remove($name)
     {
         $this->offsetUnset($name);
     }
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function set($name, $value)
     {
@@ -162,37 +161,34 @@ class Collection implements \Countable, \ArrayAccess, \IteratorAggregate, Arraya
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function sortValues($ascending=true, $flags=SORT_REGULAR)
     {
         if ($ascending) {
             asort($this->data, $flags);
-        }
-        else {
+        } else {
             arsort($this->data, $flags);
         }
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function sortKeys($ascending=true, $flags=SORT_REGULAR)
     {
         if ($ascending) {
             ksort($this->data, $flags);
-        }
-        else {
+        } else {
             krsort($this->data, $flags);
         }
     }
 
     /**
-     * @inheritdoc
+     * {@inheritdoc}
      */
     public function sortBy(\Closure $sortRoutine)
     {
         uksort($this->data, $sortRoutine);
     }
-
 }
