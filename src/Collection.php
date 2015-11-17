@@ -9,7 +9,6 @@
  */
 namespace Everon\Component\Collection;
 
-use Everon\Collection\CollectionInterface;
 use Everon\Component\Collection\Helper\ArrayableInterface;
 use Everon\Component\Collection\Helper\ToArray;
 
