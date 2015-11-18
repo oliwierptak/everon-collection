@@ -87,7 +87,6 @@ class Lazy extends Collection
     public function getIterator()
     {
         $this->actuate();
-
         return parent::getIterator();
     }
 
@@ -153,6 +152,7 @@ class Lazy extends Collection
         $this->actuate();
         return parent::isEmpty();
     }
+
     /**
      * {@inheritdoc}
      */
