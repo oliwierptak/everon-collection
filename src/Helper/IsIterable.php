@@ -22,7 +22,7 @@ trait IsIterable
             return true;
         }
 
-        if ($input instanceof \ArrayAccess || $input instanceof \Iterator) {
+        if ($input instanceof \ArrayAccess || $input instanceof \Iterator || $input instanceof \Traversable) {
             return true;
         }
 
