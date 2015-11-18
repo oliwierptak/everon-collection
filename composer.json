@@ -13,7 +13,7 @@
     "psr-4": {
       "Everon\\Component\\Collection\\": "src/",
       "Everon\\Component\\Collection\\Helper\\": "src/Helper/",
-      "Everon\\Component\\Collection\\Tests\\": "tests/"
+      "Everon\\Component\\Collection\\Tests\\Unit\\": "tests/unit/"
     },
     "exclude-from-classmap": [
       "/tests/"
