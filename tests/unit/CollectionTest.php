@@ -7,9 +7,10 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-namespace Everon\Componnent\Collection\Tests;
+namespace Everon\Component\Collection\Tests\Unit;
 
 use Everon\Component\Collection\Collection;
+use Everon\Component\Collection\CollectionInterface;
 
 class CollectionTest extends \PHPUnit_Framework_TestCase
 {
@@ -22,135 +23,130 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         'fuzz' => null,
     ];
 
+    /**
+     * @var CollectionInterface
+     */
+    protected $Collection;
+
+    protected function setUp()
+    {
+        $this->Collection = $this->getCollectionInstance($this->arrayFixture);
+    }
+
+    /**
+     * @param array $data
+     *
+     * @return Collection
+     */
+    protected function getCollectionInstance(array $data)
+    {
+        return new Collection($data);
+    }
+
     public function test_collection_has_Countable_interface()
     {
-        $Collection = new Collection($this->arrayFixture);
-
-        $this->assertInstanceOf('\Countable', $Collection);
+        $this->assertInstanceOf('\Countable', $this->Collection);
     }
 
     public function test_collection_has_ArrayAccess_interface()
     {
-        $Collection = new Collection($this->arrayFixture);
-
-        $this->assertInstanceOf('\ArrayAccess', $Collection);
+        $this->assertInstanceOf('\ArrayAccess', $this->Collection);
     }
 
     public function test_collection_has_IteratorAggregate_interface()
     {
-        $Collection = new Collection($this->arrayFixture);
-
-        $this->assertInstanceOf('\IteratorAggregate', $Collection);
+        $this->assertInstanceOf('\IteratorAggregate', $this->Collection);
     }
 
     public function test_collection_has_ArrayableInterface_interface()
     {
-        $Collection = new Collection($this->arrayFixture);
-
-        $this->assertInstanceOf('Everon\Component\Collection\Helper\ArrayableInterface', $Collection);
+        $this->assertInstanceOf('Everon\Component\Collection\Helper\ArrayableInterface', $this->Collection);
     }
 
     public function test_append()
     {
-        $Collection = new Collection($this->arrayFixture);
-
-        $Collection->append(100);
+        $this->Collection->append(100);
 
         $expected = $this->arrayFixture;
         $expected[3] = 100;
 
-        $this->assertEquals($expected, $Collection->toArray());
+        $this->assertEquals($expected, $this->Collection->toArray());
     }
 
     public function test_append_array()
     {
-        $Collection = new Collection($this->arrayFixture);
-
         $new_data = [
             'foobar' => 100,
         ];
 
-        $Collection->appendArray($new_data);
+        $this->Collection->appendArray($new_data);
 
         $expected = $this->arrayFixture + $new_data;
 
-        $this->assertEquals($expected, $Collection->toArray());
+        $this->assertEquals($expected, $this->Collection->toArray());
     }
 
     public function test_append_collections()
     {
-        $Collection = new Collection($this->arrayFixture);
-
         $new_data = [
             'foobar' => 100,
         ];
 
-        $Collection->appendCollection(new Collection($new_data));
+        $this->Collection->appendCollection($this->getCollectionInstance($new_data));
 
         $expected = $this->arrayFixture + $new_data;
 
-        $this->assertEquals($expected, $Collection->toArray());
+        $this->assertEquals($expected, $this->Collection->toArray());
     }
 
     public function test_get_with_default()
     {
-        $Collection = new Collection($this->arrayFixture);
-
-        $this->assertEquals(25, $Collection->get('newkey', 25));
+        $this->assertEquals(25, $this->Collection->get('newkey', 25));
     }
 
     public function test_get_without_default()
     {
-        $Collection = new Collection($this->arrayFixture);
-
-        $this->assertEquals(null, $Collection->get('newkey'));
+        $this->assertEquals(null, $this->Collection->get('newkey'));
     }
 
     public function test_has()
     {
-        $Collection = new Collection($this->arrayFixture);
-
-        $this->assertEquals(false, $Collection->get('newkey'));
-        $this->assertEquals(true, $Collection->get('foo'));
+        $this->assertEquals(false, $this->Collection->get('newkey'));
+        $this->assertEquals(true, $this->Collection->get('foo'));
     }
 
     public function test_is_empty()
     {
-        $Collection = new Collection($this->arrayFixture);
-        $this->assertEquals(false, $Collection->isEmpty());
+        $this->assertEquals(false, $this->Collection->isEmpty());
 
-        $EmptyCollection = new Collection([]);
+        $EmptyCollection = $this->getCollectionInstance([]);
         $this->assertEquals(true, $EmptyCollection->isEmpty());
     }
 
     public function test_remove()
     {
-        $Collection = new Collection($this->arrayFixture);
-
         unset($this->arrayFixture['foo']);
         $expected = $this->arrayFixture;
 
-        $Collection->remove('foo');
+        $this->Collection->remove('foo');
 
-        $this->assertEquals($expected, $Collection->toArray());
+        $this->assertEquals($expected, $this->Collection->toArray());
     }
 
     public function test_set()
     {
-        $Collection = new Collection($this->arrayFixture);
-
-        $Collection->set('newkey', 100);
+        $this->Collection->set('newkey', 100);
 
         $expected = $this->arrayFixture;
         $expected['newkey'] = 100;
 
-        $this->assertEquals($expected, $Collection->toArray());
+        $this->assertEquals($expected, $this->Collection->toArray());
     }
 
     public function test_append_nested_collections_deep()
     {
         $data = [
-            'foo' => new Collection([
+            'foo' => $this->getCollectionInstance([
                 'foo_nested' => 100,
                 'bar_nested' => 100,
                 'nested_collection' => new Collection([
@@ -161,7 +157,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
             'bar' => 'bar',
         ];
 
-        $Collection = new Collection($data);
+        $Collection = $this->getCollectionInstance($data);
 
         $expected = [
             'foo' => [
@@ -180,7 +176,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 
     public function test_sort_values_ascending()
     {
-        $Collection = new Collection([
+        $Collection = $this->getCollectionInstance([
             'bar' => 3,
             'foo' => 1,
             'fuzz' => 2,
@@ -199,7 +195,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 
     public function test_sort_values_descending()
     {
-        $Collection = new Collection([
+        $Collection = $this->getCollectionInstance([
             'bar' => 3,
             'foo' => 1,
             'fuzz' => 2,
@@ -218,9 +214,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 
     public function test_sort_keys_ascending()
     {
-        $Collection = new Collection($this->arrayFixture);
-
-        $Collection->sortKeys();
+        $this->Collection->sortKeys();
 
         $expected = [
             'bar' => 'barValue',
@@ -228,14 +222,12 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
             'fuzz' => null,
         ];
 
-        $this->assertTrue($expected === $Collection->toArray());
+        $this->assertTrue($expected === $this->Collection->toArray());
     }
 
     public function test_sort_keys_descending()
     {
-        $Collection = new Collection($this->arrayFixture);
-
-        $Collection->sortKeys(false);
+        $this->Collection->sortKeys(false);
 
         $expected = [
             'fuzz' => null,
@@ -243,12 +235,12 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
             'bar' => 'barValue',
         ];
 
-        $this->assertTrue($expected === $Collection->toArray());
+        $this->assertTrue($expected === $this->Collection->toArray());
     }
 
     public function test_sort_by()
     {
-        $Collection = new Collection([
+        $Collection = $this->getCollectionInstance([
             'fuzz' => 2,
             'bar' => 3,
             'foo' => 1,
