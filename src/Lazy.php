@@ -9,29 +9,31 @@
  */
 namespace Everon\Component\Collection;
 
-use Everon\Component\Collection\Helper\ToArray;
-
-class Collection implements CollectionInterface
+class Lazy extends Collection
 {
-    use ToArray;
+    /**
+     * @var \Closure
+     */
+    protected $LazyDataLoader = null;
 
     /**
-     * @var array
+     * @param \Closure $LazyDataLoader
      */
-    protected $data = [];
-
-    /**
-     * @var int
-     */
-    protected $position = 0;
-
-    /**
-     * @param array $data
-     */
-    public function __construct(array $data)
+    public function __construct(\Closure $LazyDataLoader)
     {
-        $this->data = $data;
-        $this->position = 0;
+        parent::__construct([]);
+        $this->data = null;
+        $this->LazyDataLoader = $LazyDataLoader;
+    }
+
+    /**
+     * @return void
+     */
+    protected function actuate()
+    {
+        if ($this->data === null) {
+            $this->data = $this->LazyDataLoader->__invoke() ?: [];
+        }
     }
 
     /**
@@ -39,7 +41,8 @@ class Collection implements CollectionInterface
      */
     public function count()
     {
-        return count($this->data);
+        $this->actuate();
+        return parent::count();
     }
 
     /**
@@ -47,7 +50,8 @@ class Collection implements CollectionInterface
      */
     public function offsetExists($offset)
     {
-        return array_key_exists($offset, $this->data);
+        $this->actuate();
+        return parent::offsetExists($offset);
     }
 
     /**
@@ -55,7 +59,8 @@ class Collection implements CollectionInterface
      */
     public function offsetGet($offset)
     {
-        return $this->data[$offset];
+        $this->actuate();
+        return parent::offsetGet($offset);
     }
 
     /**
@@ -63,7 +68,8 @@ class Collection implements CollectionInterface
      */
     public function offsetSet($offset, $value)
     {
-        $this->data[$offset] = $value;
+        $this->actuate();
+        parent::offsetSet($offset, $value);
     }
 
     /**
@@ -71,7 +77,8 @@ class Collection implements CollectionInterface
      */
     public function offsetUnset($offset)
     {
-        unset($this->data[$offset]);
+        $this->actuate();
+        parent::offsetUnset($offset);
     }
 
     /**
@@ -79,7 +86,9 @@ class Collection implements CollectionInterface
      */
     public function getIterator()
     {
-        return new \ArrayIterator($this->data);
+        $this->actuate();
+
+        return parent::getIterator();
     }
 
     /**
@@ -87,7 +96,8 @@ class Collection implements CollectionInterface
      */
     public function append($item)
     {
-        $this->offsetSet($this->count(), $item);
+        $this->actuate();
+        parent::append($item);
     }
 
     /**
@@ -95,7 +105,8 @@ class Collection implements CollectionInterface
      */
     public function appendArray(array $data)
     {
-        $this->data += $data;
+        $this->actuate();
+        parent::appendArray($data);
     }
 
     /**
@@ -103,7 +114,8 @@ class Collection implements CollectionInterface
      */
     public function appendCollection(CollectionInterface $Collection)
     {
-        $this->data += $Collection->toArray();
+        $this->actuate();
+        parent::appendCollection($Collection);
     }
 
     /**
@@ -111,7 +123,8 @@ class Collection implements CollectionInterface
      */
     public function collect(array $data)
     {
-        $this->data = $data;
+        $this->actuate();
+        parent::collect($data);
     }
 
     /**
@@ -119,11 +132,8 @@ class Collection implements CollectionInterface
      */
     public function get($name, $default=null)
     {
-        if ($this->has($name) === false) {
-            return $default;
-        }
-
-        return $this->offsetGet($name);
+        $this->actuate();
+        return parent::get($name, $default);
     }
 
     /**
@@ -131,7 +141,8 @@ class Collection implements CollectionInterface
      */
     public function has($name)
     {
-        return $this->offsetExists($name);
+        $this->actuate();
+        return parent::has($name);
     }
 
     /**
@@ -139,22 +150,34 @@ class Collection implements CollectionInterface
      */
     public function isEmpty()
     {
-        return empty($this->data);
+        $this->actuate();
+        return parent::isEmpty();
     }
-
     /**
      * {@inheritdoc}
      */
     public function remove($name)
     {
-        $this->offsetUnset($name);
+        $this->actuate();
+        parent::remove($name);
     }
+
     /**
      * {@inheritdoc}
      */
     public function set($name, $value)
     {
-        $this->offsetSet($name, $value);
+        $this->actuate();
+        parent::set($name, $value);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toArray($deep=false)
+    {
+        $this->actuate();
+        return parent::toArray($deep);
     }
 
     /**
@@ -162,11 +185,8 @@ class Collection implements CollectionInterface
      */
     public function sortValues($ascending=true, $flags=SORT_REGULAR)
     {
-        if ($ascending) {
-            asort($this->data, $flags);
-        } else {
-            arsort($this->data, $flags);
-        }
+        $this->actuate();
+        parent::sortValues($ascending, $flags);
     }
 
     /**
@@ -174,11 +194,8 @@ class Collection implements CollectionInterface
      */
     public function sortKeys($ascending=true, $flags=SORT_REGULAR)
     {
-        if ($ascending) {
-            ksort($this->data, $flags);
-        } else {
-            krsort($this->data, $flags);
-        }
+        $this->actuate();
+        parent::sortKeys($ascending, $flags);
     }
 
     /**
@@ -186,6 +203,7 @@ class Collection implements CollectionInterface
      */
     public function sortBy(\Closure $sortRoutine)
     {
-        uksort($this->data, $sortRoutine);
+        $this->actuate();
+        parent::sortBy($sortRoutine);
     }
 }

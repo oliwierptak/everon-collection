@@ -11,7 +11,7 @@ namespace Everon\Component\Collection;
 
 use Everon\Component\Collection\Helper\ArrayableInterface;
 
-interface CollectionInterface extends ArrayableInterface
+interface CollectionInterface extends ArrayableInterface, \Countable, \ArrayAccess, \IteratorAggregate
 {
     /**
      * @param mixed $item
