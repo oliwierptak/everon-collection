@@ -18,7 +18,7 @@
       "/tests/"
     ]
   },
-  "require": {
+  "require": {s
     "php": ">=7.0",
     "everon/utils": "dev-development"
   },
