@@ -9,7 +9,7 @@
  */
 namespace Everon\Component\Collection;
 
-use Everon\Component\Collection\Helper\ToArray;
+use Everon\Component\Utils\Collection\ToArray;
 
 class Collection implements CollectionInterface
 {
