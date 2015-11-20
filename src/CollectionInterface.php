@@ -9,7 +9,7 @@
  */
 namespace Everon\Component\Collection;
 
-use Everon\Component\Collection\Helper\ArrayableInterface;
+use Everon\Component\Utils\Collection\ArrayableInterface;
 
 interface CollectionInterface extends ArrayableInterface, \Countable, \ArrayAccess, \IteratorAggregate
 {

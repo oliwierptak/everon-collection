@@ -12,7 +12,6 @@
   "autoload": {
     "psr-4": {
       "Everon\\Component\\Collection\\": "src/",
-      "Everon\\Component\\Collection\\Helper\\": "src/Helper/",
       "Everon\\Component\\Collection\\Tests\\Unit\\": "tests/unit/"
     },
     "exclude-from-classmap": [
@@ -20,7 +19,8 @@
     ]
   },
   "require": {
-    "php": ">=7.0"
+    "php": ">=7.0",
+    "everon/utils": "dev-development"
   },
   "require-dev": {
     "phpunit/phpunit": "*",

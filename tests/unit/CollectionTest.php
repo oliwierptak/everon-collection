@@ -60,7 +60,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
 
     public function test_collection_has_ArrayableInterface_interface()
     {
-        $this->assertInstanceOf('Everon\Component\Collection\Helper\ArrayableInterface', $this->Collection);
+        $this->assertInstanceOf('Everon\Component\Utils\Collection\ArrayableInterface', $this->Collection);
     }
 
     public function test_append()
