@@ -129,7 +129,7 @@ class Lazy extends Collection
     /**
      * {@inheritdoc}
      */
-    public function get($name, $default=null)
+    public function get($name, $default = null)
     {
         $this->actuate();
         return parent::get($name, $default);
@@ -174,7 +174,7 @@ class Lazy extends Collection
     /**
      * {@inheritdoc}
      */
-    public function toArray($deep=false)
+    public function toArray($deep = false)
     {
         $this->actuate();
         return parent::toArray($deep);
@@ -183,7 +183,7 @@ class Lazy extends Collection
     /**
      * {@inheritdoc}
      */
-    public function sortValues($ascending=true, $flags=SORT_REGULAR)
+    public function sortValues($ascending = true, $flags = SORT_REGULAR)
     {
         $this->actuate();
         parent::sortValues($ascending, $flags);
@@ -192,7 +192,7 @@ class Lazy extends Collection
     /**
      * {@inheritdoc}
      */
-    public function sortKeys($ascending=true, $flags=SORT_REGULAR)
+    public function sortKeys($ascending = true, $flags = SORT_REGULAR)
     {
         $this->actuate();
         parent::sortKeys($ascending, $flags);

@@ -117,7 +117,7 @@ class Collection implements CollectionInterface
     /**
      * {@inheritdoc}
      */
-    public function get($name, $default=null)
+    public function get($name, $default = null)
     {
         if ($this->has($name) === false) {
             return $default;
@@ -149,6 +149,7 @@ class Collection implements CollectionInterface
     {
         $this->offsetUnset($name);
     }
+
     /**
      * {@inheritdoc}
      */
@@ -160,11 +161,12 @@ class Collection implements CollectionInterface
     /**
      * {@inheritdoc}
      */
-    public function sortValues($ascending=true, $flags=SORT_REGULAR)
+    public function sortValues($ascending = true, $flags = SORT_REGULAR)
     {
         if ($ascending) {
             asort($this->data, $flags);
-        } else {
+        }
+        else {
             arsort($this->data, $flags);
         }
     }
@@ -172,11 +174,12 @@ class Collection implements CollectionInterface
     /**
      * {@inheritdoc}
      */
-    public function sortKeys($ascending=true, $flags=SORT_REGULAR)
+    public function sortKeys($ascending = true, $flags = SORT_REGULAR)
     {
         if ($ascending) {
             ksort($this->data, $flags);
-        } else {
+        }
+        else {
             krsort($this->data, $flags);
         }
     }

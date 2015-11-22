@@ -45,7 +45,7 @@ interface CollectionInterface extends ArrayableInterface, \Countable, \ArrayAcce
      *
      * @return mixed|null
      */
-    public function get($name, $default=null);
+    public function get($name, $default = null);
 
     /**
      * @param $name
@@ -76,7 +76,7 @@ interface CollectionInterface extends ArrayableInterface, \Countable, \ArrayAcce
      *
      * @return void
      */
-    public function sortValues($ascending=true, $flags=SORT_REGULAR);
+    public function sortValues($ascending = true, $flags = SORT_REGULAR);
 
     /**
      * @param bool|true $ascending
@@ -84,7 +84,7 @@ interface CollectionInterface extends ArrayableInterface, \Countable, \ArrayAcce
      *
      * @return void
      */
-    public function sortKeys($ascending=true, $flags=SORT_REGULAR);
+    public function sortKeys($ascending = true, $flags = SORT_REGULAR);
 
     /**
      * @param \Closure $sortRoutine
