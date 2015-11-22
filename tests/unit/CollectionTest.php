@@ -18,9 +18,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
      * @var array
      */
     protected $arrayFixture = [
-        'foo' => 1,
-        'bar' => 'barValue',
-        'fuzz' => null,
+        'foo' => 1, 'bar' => 'barValue', 'fuzz' => null,
     ];
 
     /**
@@ -147,28 +145,20 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     {
         $data = [
             'foo' => $this->getCollectionInstance([
-                'foo_nested' => 100,
-                'bar_nested' => 100,
-                'nested_collection' => new Collection([
-                    'foo_nested' => 200,
-                    'bar_nested' => 200,
+                'foo_nested' => 100, 'bar_nested' => 100, 'nested_collection' => new Collection([
+                    'foo_nested' => 200, 'bar_nested' => 200,
                 ]),
-            ]),
-            'bar' => 'bar',
+            ]), 'bar' => 'bar',
         ];
 
         $Collection = $this->getCollectionInstance($data);
 
         $expected = [
             'foo' => [
-                'foo_nested' => 100,
-                'bar_nested' => 100,
-                'nested_collection' => [
-                    'foo_nested' => 200,
-                    'bar_nested' => 200,
+                'foo_nested' => 100, 'bar_nested' => 100, 'nested_collection' => [
+                    'foo_nested' => 200, 'bar_nested' => 200,
                 ],
-            ],
-            'bar' => 'bar',
+            ], 'bar' => 'bar',
         ];
 
         $this->assertEquals($expected, $Collection->toArray(true));
@@ -177,17 +167,13 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     public function test_sort_values_ascending()
     {
         $Collection = $this->getCollectionInstance([
-            'bar' => 3,
-            'foo' => 1,
-            'fuzz' => 2,
+            'bar' => 3, 'foo' => 1, 'fuzz' => 2,
         ]);
 
         $Collection->sortValues();
 
         $expected = [
-            'foo' => 1,
-            'fuzz' => 2,
-            'bar' => 3,
+            'foo' => 1, 'fuzz' => 2, 'bar' => 3,
         ];
 
         $this->assertTrue($expected === $Collection->toArray());
@@ -196,17 +182,13 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     public function test_sort_values_descending()
     {
         $Collection = $this->getCollectionInstance([
-            'bar' => 3,
-            'foo' => 1,
-            'fuzz' => 2,
+            'bar' => 3, 'foo' => 1, 'fuzz' => 2,
         ]);
 
         $Collection->sortValues(false);
 
         $expected = [
-            'bar' => 3,
-            'fuzz' => 2,
-            'foo' => 1,
+            'bar' => 3, 'fuzz' => 2, 'foo' => 1,
         ];
 
         $this->assertTrue($expected === $Collection->toArray());
@@ -217,9 +199,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->Collection->sortKeys();
 
         $expected = [
-            'bar' => 'barValue',
-            'foo' => 1,
-            'fuzz' => null,
+            'bar' => 'barValue', 'foo' => 1, 'fuzz' => null,
         ];
 
         $this->assertTrue($expected === $this->Collection->toArray());
@@ -230,9 +210,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         $this->Collection->sortKeys(false);
 
         $expected = [
-            'fuzz' => null,
-            'foo' => 1,
-            'bar' => 'barValue',
+            'fuzz' => null, 'foo' => 1, 'bar' => 'barValue',
         ];
 
         $this->assertTrue($expected === $this->Collection->toArray());
@@ -241,9 +219,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
     public function test_sort_by()
     {
         $Collection = $this->getCollectionInstance([
-            'fuzz' => 2,
-            'bar' => 3,
-            'foo' => 1,
+            'fuzz' => 2, 'bar' => 3, 'foo' => 1,
         ]);
 
         $Collection->sortBy(function ($a, $b) {
@@ -251,9 +227,7 @@ class CollectionTest extends \PHPUnit_Framework_TestCase
         });
 
         $expected = [
-            'bar' => 3,
-            'foo' => 1,
-            'fuzz' => 2,
+            'bar' => 3, 'foo' => 1, 'fuzz' => 2,
         ];
 
         $this->assertTrue($expected === $Collection->toArray());

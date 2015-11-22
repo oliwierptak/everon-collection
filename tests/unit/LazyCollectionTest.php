@@ -22,7 +22,7 @@ class LazyCollectionTest extends CollectionTest
 
     protected function setUp()
     {
-        $this->Loader = function() {
+        $this->Loader = function () {
             return $this->arrayFixture;
         };
 
