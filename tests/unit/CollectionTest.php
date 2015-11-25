@@ -11,8 +11,9 @@ namespace Everon\Component\Collection\Tests\Unit;
 
 use Everon\Component\Collection\Collection;
 use Everon\Component\Collection\CollectionInterface;
+use Everon\Component\Utils\TestCase\MockeryTest;
 
-class CollectionTest extends \PHPUnit_Framework_TestCase
+class CollectionTest extends MockeryTest
 {
     /**
      * @var array
