@@ -15,6 +15,7 @@ use Everon\Component\Utils\TestCase\MockeryTest;
 
 class CollectionTest extends MockeryTest
 {
+
     /**
      * @var array
      */
@@ -233,4 +234,5 @@ class CollectionTest extends MockeryTest
 
         $this->assertTrue($expected === $Collection->toArray());
     }
+
 }

@@ -15,6 +15,7 @@ use Everon\Component\Collection\Lazy;
 
 class LazyCollectionTest extends CollectionTest
 {
+
     /**
      * @var CollectionInterface
      */
@@ -123,4 +124,5 @@ class LazyCollectionTest extends CollectionTest
     {
         parent::test_sort_by();
     }
+
 }

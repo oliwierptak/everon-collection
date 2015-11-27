@@ -13,6 +13,7 @@ use Everon\Component\Utils\Collection\ArrayableInterface;
 
 interface CollectionInterface extends ArrayableInterface, \Countable, \ArrayAccess, \IteratorAggregate
 {
+
     /**
      * @param mixed $item
      */
@@ -92,4 +93,5 @@ interface CollectionInterface extends ArrayableInterface, \Countable, \ArrayAcce
      * @return void
      */
     public function sortBy(\Closure $sortRoutine);
+
 }

@@ -11,6 +11,7 @@ namespace Everon\Component\Collection;
 
 class Lazy extends Collection
 {
+
     /**
      * @var \Closure
      */
@@ -42,6 +43,7 @@ class Lazy extends Collection
     public function count()
     {
         $this->actuate();
+
         return parent::count();
     }
 
@@ -51,6 +53,7 @@ class Lazy extends Collection
     public function offsetExists($offset)
     {
         $this->actuate();
+
         return parent::offsetExists($offset);
     }
 
@@ -60,6 +63,7 @@ class Lazy extends Collection
     public function offsetGet($offset)
     {
         $this->actuate();
+
         return parent::offsetGet($offset);
     }
 
@@ -87,6 +91,7 @@ class Lazy extends Collection
     public function getIterator()
     {
         $this->actuate();
+
         return parent::getIterator();
     }
 
@@ -132,6 +137,7 @@ class Lazy extends Collection
     public function get($name, $default = null)
     {
         $this->actuate();
+
         return parent::get($name, $default);
     }
 
@@ -141,6 +147,7 @@ class Lazy extends Collection
     public function has($name)
     {
         $this->actuate();
+
         return parent::has($name);
     }
 
@@ -150,6 +157,7 @@ class Lazy extends Collection
     public function isEmpty()
     {
         $this->actuate();
+
         return parent::isEmpty();
     }
 
@@ -177,6 +185,7 @@ class Lazy extends Collection
     public function toArray($deep = false)
     {
         $this->actuate();
+
         return parent::toArray($deep);
     }
 
@@ -206,4 +215,5 @@ class Lazy extends Collection
         $this->actuate();
         parent::sortBy($sortRoutine);
     }
+
 }

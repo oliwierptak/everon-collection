@@ -13,6 +13,7 @@ use Everon\Component\Utils\Collection\ToArray;
 
 class Collection implements CollectionInterface
 {
+
     use ToArray;
 
     /**
@@ -165,8 +166,7 @@ class Collection implements CollectionInterface
     {
         if ($ascending) {
             asort($this->data, $flags);
-        }
-        else {
+        } else {
             arsort($this->data, $flags);
         }
     }
@@ -178,8 +178,7 @@ class Collection implements CollectionInterface
     {
         if ($ascending) {
             ksort($this->data, $flags);
-        }
-        else {
+        } else {
             krsort($this->data, $flags);
         }
     }
@@ -191,4 +190,5 @@ class Collection implements CollectionInterface
     {
         uksort($this->data, $sortRoutine);
     }
+
 }
