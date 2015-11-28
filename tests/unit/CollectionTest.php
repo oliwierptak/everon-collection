@@ -20,7 +20,9 @@ class CollectionTest extends MockeryTest
      * @var array
      */
     protected $arrayFixture = [
-        'foo' => 1, 'bar' => 'barValue', 'fuzz' => null,
+        'foo' => 1,
+        'bar' => 'barValue',
+        'fuzz' => null,
     ];
 
     /**
@@ -30,7 +32,7 @@ class CollectionTest extends MockeryTest
 
     protected function setUp()
     {
-        $this->Collection = $this->getCollectionInstance($this->arrayFixture);
+        $this->Collection = $this->createCollectionInstance($this->arrayFixture);
     }
 
     /**
@@ -38,7 +40,7 @@ class CollectionTest extends MockeryTest
      *
      * @return Collection
      */
-    protected function getCollectionInstance(array $data)
+    protected function createCollectionInstance(array $data)
     {
         return new Collection($data);
     }
@@ -92,7 +94,7 @@ class CollectionTest extends MockeryTest
             'foobar' => 100,
         ];
 
-        $this->Collection->appendCollection($this->getCollectionInstance($new_data));
+        $this->Collection->appendCollection($this->createCollectionInstance($new_data));
 
         $expected = $this->arrayFixture + $new_data;
 
@@ -119,7 +121,7 @@ class CollectionTest extends MockeryTest
     {
         $this->assertEquals(false, $this->Collection->isEmpty());
 
-        $EmptyCollection = $this->getCollectionInstance([]);
+        $EmptyCollection = $this->createCollectionInstance([]);
         $this->assertEquals(true, $EmptyCollection->isEmpty());
     }
 
@@ -146,21 +148,29 @@ class CollectionTest extends MockeryTest
     public function test_append_nested_collections_deep()
     {
         $data = [
-            'foo' => $this->getCollectionInstance([
-                'foo_nested' => 100, 'bar_nested' => 100, 'nested_collection' => new Collection([
-                    'foo_nested' => 200, 'bar_nested' => 200,
+            'foo' => $this->createCollectionInstance([
+                'foo_nested' => 100,
+                'bar_nested' => 100,
+                'nested_collection' => $this->createCollectionInstance([
+                    'foo_nested' => 200,
+                    'bar_nested' => 200,
                 ]),
-            ]), 'bar' => 'bar',
+            ]),
+            'bar' => 'bar',
         ];
 
-        $Collection = $this->getCollectionInstance($data);
+        $Collection = $this->createCollectionInstance($data);
 
         $expected = [
             'foo' => [
-                'foo_nested' => 100, 'bar_nested' => 100, 'nested_collection' => [
-                    'foo_nested' => 200, 'bar_nested' => 200,
+                'foo_nested' => 100,
+                'bar_nested' => 100,
+                'nested_collection' => [
+                    'foo_nested' => 200,
+                    'bar_nested' => 200,
                 ],
-            ], 'bar' => 'bar',
+            ],
+            'bar' => 'bar',
         ];
 
         $this->assertEquals($expected, $Collection->toArray(true));
@@ -168,14 +178,18 @@ class CollectionTest extends MockeryTest
 
     public function test_sort_values_ascending()
     {
-        $Collection = $this->getCollectionInstance([
-            'bar' => 3, 'foo' => 1, 'fuzz' => 2,
+        $Collection = $this->createCollectionInstance([
+            'bar' => 3,
+            'foo' => 1,
+            'fuzz' => 2,
         ]);
 
         $Collection->sortValues();
 
         $expected = [
-            'foo' => 1, 'fuzz' => 2, 'bar' => 3,
+            'foo' => 1,
+            'fuzz' => 2,
+            'bar' => 3,
         ];
 
         $this->assertTrue($expected === $Collection->toArray());
@@ -183,14 +197,18 @@ class CollectionTest extends MockeryTest
 
     public function test_sort_values_descending()
     {
-        $Collection = $this->getCollectionInstance([
-            'bar' => 3, 'foo' => 1, 'fuzz' => 2,
+        $Collection = $this->createCollectionInstance([
+            'bar' => 3,
+            'foo' => 1,
+            'fuzz' => 2,
         ]);
 
         $Collection->sortValues(false);
 
         $expected = [
-            'bar' => 3, 'fuzz' => 2, 'foo' => 1,
+            'bar' => 3,
+            'fuzz' => 2,
+            'foo' => 1,
         ];
 
         $this->assertTrue($expected === $Collection->toArray());
@@ -201,7 +219,9 @@ class CollectionTest extends MockeryTest
         $this->Collection->sortKeys();
 
         $expected = [
-            'bar' => 'barValue', 'foo' => 1, 'fuzz' => null,
+            'bar' => 'barValue',
+            'foo' => 1,
+            'fuzz' => null,
         ];
 
         $this->assertTrue($expected === $this->Collection->toArray());
@@ -212,7 +232,9 @@ class CollectionTest extends MockeryTest
         $this->Collection->sortKeys(false);
 
         $expected = [
-            'fuzz' => null, 'foo' => 1, 'bar' => 'barValue',
+            'fuzz' => null,
+            'foo' => 1,
+            'bar' => 'barValue',
         ];
 
         $this->assertTrue($expected === $this->Collection->toArray());
@@ -220,8 +242,10 @@ class CollectionTest extends MockeryTest
 
     public function test_sort_by()
     {
-        $Collection = $this->getCollectionInstance([
-            'fuzz' => 2, 'bar' => 3, 'foo' => 1,
+        $Collection = $this->createCollectionInstance([
+            'fuzz' => 2,
+            'bar' => 3,
+            'foo' => 1,
         ]);
 
         $Collection->sortBy(function ($a, $b) {
@@ -229,7 +253,9 @@ class CollectionTest extends MockeryTest
         });
 
         $expected = [
-            'bar' => 3, 'foo' => 1, 'fuzz' => 2,
+            'bar' => 3,
+            'foo' => 1,
+            'fuzz' => 2,
         ];
 
         $this->assertTrue($expected === $Collection->toArray());
