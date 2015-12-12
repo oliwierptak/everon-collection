@@ -11,4 +11,4 @@ matrix:
 before_script:
   - composer --prefer-source install
 
-script: phpunit --coverage-text
+script: vendor/bin/phpunit --coverage-text
