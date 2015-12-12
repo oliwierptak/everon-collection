@@ -17,17 +17,17 @@ class LazyCollectionTest extends CollectionTest
 {
 
     /**
-     * @var CollectionInterface
+     * @param array $data
+     *
+     * @return CollectionInterface
      */
-    protected $Loader;
-
-    protected function setUp()
+    protected function createCollectionInstance(array $data)
     {
-        $this->Loader = function () {
-            return $this->arrayFixture;
+        $Loader = function () use ($data) {
+            return $data;
         };
 
-        $this->Collection = new Lazy($this->Loader);
+        return new Lazy($Loader);
     }
 
     public function test_collection_has_Countable_interface()
@@ -123,6 +123,16 @@ class LazyCollectionTest extends CollectionTest
     public function test_sort_by()
     {
         parent::test_sort_by();
+    }
+
+    public function test_foreach()
+    {
+        parent::test_foreach();
+    }
+
+    public function test_for()
+    {
+        parent::test_for();
     }
 
 }

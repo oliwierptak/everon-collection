@@ -145,6 +145,15 @@ class CollectionTest extends MockeryTest
         $this->assertEquals($expected, $this->Collection->toArray());
     }
 
+    public function test_collect()
+    {
+        $this->Collection->collect($this->arrayFixture);
+
+        $expected = $this->arrayFixture;
+
+        $this->assertEquals($expected, $this->Collection->toArray());
+    }
+
     public function test_append_nested_collections_deep()
     {
         $data = [
@@ -261,4 +270,24 @@ class CollectionTest extends MockeryTest
         $this->assertTrue($expected === $Collection->toArray());
     }
 
+    public function test_foreach()
+    {
+        foreach ($this->Collection as $key => $value) {
+            $this->assertEquals($this->arrayFixture[$key], $value);
+        }
+    }
+
+    public function test_for()
+    {
+        $Collection = $this->createCollectionInstance([
+            'fuzz',
+            'bar',
+            'foo',
+        ]);
+
+        for ($x=0; $x<count($Collection); $x++) {
+            $key = $Collection[$x];
+            $this->assertArrayHasKey($key, $this->arrayFixture);
+        }
+    }
 }
