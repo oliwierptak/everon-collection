@@ -1,6 +1,6 @@
 {
   "name": "everon/collection",
-  "description": "Collections Handling",
+  "description": "Everon Collection Component",
   "type": "library",
   "license": "MIT",
   "version": "0.5",
