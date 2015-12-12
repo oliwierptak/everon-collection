@@ -36,6 +36,16 @@ class Collection implements CollectionInterface
     }
 
     /**
+     * Implement this method to feed toArray() with custom data
+     *
+     * @return array
+     */
+    protected function getArrayableData()
+    {
+        return $this->data;
+    }
+
+    /**
      * {@inheritdoc}
      */
     public function count()
@@ -89,6 +99,8 @@ class Collection implements CollectionInterface
     public function append($item)
     {
         $this->offsetSet($this->count(), $item);
+
+        return $this;
     }
 
     /**
@@ -97,6 +109,8 @@ class Collection implements CollectionInterface
     public function appendArray(array $data)
     {
         $this->data += $data;
+
+        return $this;
     }
 
     /**
@@ -105,6 +119,8 @@ class Collection implements CollectionInterface
     public function appendCollection(CollectionInterface $Collection)
     {
         $this->data += $Collection->toArray();
+
+        return $this;
     }
 
     /**
@@ -113,6 +129,8 @@ class Collection implements CollectionInterface
     public function collect(array $data)
     {
         $this->data = $data;
+
+        return $this;
     }
 
     /**
@@ -149,6 +167,8 @@ class Collection implements CollectionInterface
     public function remove($name)
     {
         $this->offsetUnset($name);
+
+        return $this;
     }
 
     /**
@@ -157,6 +177,8 @@ class Collection implements CollectionInterface
     public function set($name, $value)
     {
         $this->offsetSet($name, $value);
+
+        return $this;
     }
 
     /**
@@ -169,6 +191,8 @@ class Collection implements CollectionInterface
         } else {
             arsort($this->data, $flags);
         }
+
+        return $this;
     }
 
     /**
@@ -181,6 +205,8 @@ class Collection implements CollectionInterface
         } else {
             krsort($this->data, $flags);
         }
+
+        return $this;
     }
 
     /**
@@ -189,6 +215,8 @@ class Collection implements CollectionInterface
     public function sortBy(\Closure $sortRoutine)
     {
         uksort($this->data, $sortRoutine);
+
+        return $this;
     }
 
 }
