@@ -290,4 +290,5 @@ class CollectionTest extends MockeryTest
             $this->assertArrayHasKey($key, $this->arrayFixture);
         }
     }
+
 }
