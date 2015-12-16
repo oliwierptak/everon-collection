@@ -19,34 +19,34 @@ interface CollectionInterface extends ArrayableInterface, \Countable, \ArrayAcce
      *
      * @return self
      */
-    public function append($item);
+    public function append($item): CollectionInterface;
 
     /**
      * @param array $data
      *
      * @return self
      */
-    public function appendArray(array $data);
+    public function appendArray(array $data): CollectionInterface;
 
     /**
      * @param CollectionInterface $Collection
      *
      * @return self
      */
-    public function appendCollection(CollectionInterface $Collection);
+    public function appendCollection(CollectionInterface $Collection): CollectionInterface;
 
     /**
      * @param array $data
      *
      * @return self
      */
-    public function collect(array $data);
+    public function collect(array $data): CollectionInterface;
 
     /**
-     * @param $name
-     * @param null $default
+     * @param mixed $name
+     * @param mixed $default null
      *
-     * @return mixed|null
+     * @return mixed
      */
     public function get($name, $default = null);
 
@@ -67,7 +67,7 @@ interface CollectionInterface extends ArrayableInterface, \Countable, \ArrayAcce
      *
      * @return self
      */
-    public function remove($name);
+    public function remove($name): CollectionInterface;
 
     /**
      * @param $name
@@ -75,29 +75,29 @@ interface CollectionInterface extends ArrayableInterface, \Countable, \ArrayAcce
      *
      * @return self
      */
-    public function set($name, $value);
+    public function set($name, $value): CollectionInterface;
 
     /**
-     * @param bool|true $ascending
-     * @param int $flags
+     * @param bool $ascending true
+     * @param int $flags SORT_REGULAR
      *
      * @return self
      */
-    public function sortValues($ascending = true, $flags = SORT_REGULAR);
+    public function sortValues(bool $ascending = true, int $flags = SORT_REGULAR): CollectionInterface;
 
     /**
-     * @param bool|true $ascending
-     * @param int $flags
+     * @param bool $ascending true
+     * @param int $flags SORT_REGULAR
      *
      * @return self
      */
-    public function sortKeys($ascending = true, $flags = SORT_REGULAR);
+    public function sortKeys(bool $ascending = true, int $flags = SORT_REGULAR): CollectionInterface;
 
     /**
      * @param \Closure $sortRoutine
      *
      * @return self
      */
-    public function sortBy(\Closure $sortRoutine);
+    public function sortBy(\Closure $sortRoutine): CollectionInterface;
 
 }

@@ -98,37 +98,41 @@ class Lazy extends Collection
     /**
      * {@inheritdoc}
      */
-    public function append($item)
+    public function append($item): CollectionInterface
     {
         $this->actuate();
-        parent::append($item);
+
+        return parent::append($item);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function appendArray(array $data)
+    public function appendArray(array $data): CollectionInterface
     {
         $this->actuate();
-        parent::appendArray($data);
+
+        return parent::appendArray($data);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function appendCollection(CollectionInterface $Collection)
+    public function appendCollection(CollectionInterface $Collection): CollectionInterface
     {
         $this->actuate();
-        parent::appendCollection($Collection);
+
+        return parent::appendCollection($Collection);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function collect(array $data)
+    public function collect(array $data): CollectionInterface
     {
         $this->actuate();
-        parent::collect($data);
+
+        return parent::collect($data);
     }
 
     /**
@@ -164,25 +168,27 @@ class Lazy extends Collection
     /**
      * {@inheritdoc}
      */
-    public function remove($name)
+    public function remove($name): CollectionInterface
     {
         $this->actuate();
-        parent::remove($name);
+
+        return parent::remove($name);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function set($name, $value)
+    public function set($name, $value): CollectionInterface
     {
         $this->actuate();
-        parent::set($name, $value);
+
+        return parent::set($name, $value);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function toArray($deep = false)
+    public function toArray(bool $deep = false): array
     {
         $this->actuate();
 
@@ -192,28 +198,31 @@ class Lazy extends Collection
     /**
      * {@inheritdoc}
      */
-    public function sortValues($ascending = true, $flags = SORT_REGULAR)
+    public function sortValues(bool $ascending = true, int $flags = SORT_REGULAR): CollectionInterface
     {
         $this->actuate();
-        parent::sortValues($ascending, $flags);
+
+        return parent::sortValues($ascending, $flags);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function sortKeys($ascending = true, $flags = SORT_REGULAR)
+    public function sortKeys(bool $ascending = true, int $flags = SORT_REGULAR): CollectionInterface
     {
         $this->actuate();
-        parent::sortKeys($ascending, $flags);
+
+        return parent::sortKeys($ascending, $flags);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function sortBy(\Closure $sortRoutine)
+    public function sortBy(\Closure $sortRoutine): CollectionInterface
     {
         $this->actuate();
-        parent::sortBy($sortRoutine);
+
+        return parent::sortBy($sortRoutine);
     }
 
 }

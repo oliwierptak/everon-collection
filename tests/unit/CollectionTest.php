@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 /**
  * This file is part of the Everon components.
  *
@@ -38,9 +39,9 @@ class CollectionTest extends MockeryTest
     /**
      * @param array $data
      *
-     * @return Collection
+     * @return CollectionInterface
      */
-    protected function createCollectionInstance(array $data)
+    protected function createCollectionInstance(array $data): CollectionInterface
     {
         return new Collection($data);
     }
@@ -103,6 +104,7 @@ class CollectionTest extends MockeryTest
 
     public function test_get_with_default()
     {
+        $this->assertEquals(25, $this->Collection->get(15, 25));
         $this->assertEquals(25, $this->Collection->get('newkey', 25));
     }
 

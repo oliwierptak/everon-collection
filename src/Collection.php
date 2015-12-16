@@ -96,7 +96,7 @@ class Collection implements CollectionInterface
     /**
      * {@inheritdoc}
      */
-    public function append($item)
+    public function append($item): CollectionInterface
     {
         $this->offsetSet($this->count(), $item);
 
@@ -106,7 +106,7 @@ class Collection implements CollectionInterface
     /**
      * {@inheritdoc}
      */
-    public function appendArray(array $data)
+    public function appendArray(array $data): CollectionInterface
     {
         $this->data += $data;
 
@@ -116,7 +116,7 @@ class Collection implements CollectionInterface
     /**
      * {@inheritdoc}
      */
-    public function appendCollection(CollectionInterface $Collection)
+    public function appendCollection(CollectionInterface $Collection): CollectionInterface
     {
         $this->data += $Collection->toArray();
 
@@ -126,7 +126,7 @@ class Collection implements CollectionInterface
     /**
      * {@inheritdoc}
      */
-    public function collect(array $data)
+    public function collect(array $data): CollectionInterface
     {
         $this->data = $data;
 
@@ -164,7 +164,7 @@ class Collection implements CollectionInterface
     /**
      * {@inheritdoc}
      */
-    public function remove($name)
+    public function remove($name): CollectionInterface
     {
         $this->offsetUnset($name);
 
@@ -174,7 +174,7 @@ class Collection implements CollectionInterface
     /**
      * {@inheritdoc}
      */
-    public function set($name, $value)
+    public function set($name, $value): CollectionInterface
     {
         $this->offsetSet($name, $value);
 
@@ -184,7 +184,7 @@ class Collection implements CollectionInterface
     /**
      * {@inheritdoc}
      */
-    public function sortValues($ascending = true, $flags = SORT_REGULAR)
+    public function sortValues(bool $ascending = true, int $flags = SORT_REGULAR): CollectionInterface
     {
         if ($ascending) {
             asort($this->data, $flags);
@@ -198,7 +198,7 @@ class Collection implements CollectionInterface
     /**
      * {@inheritdoc}
      */
-    public function sortKeys($ascending = true, $flags = SORT_REGULAR)
+    public function sortKeys(bool $ascending = true, int $flags = SORT_REGULAR): CollectionInterface
     {
         if ($ascending) {
             ksort($this->data, $flags);
@@ -212,7 +212,7 @@ class Collection implements CollectionInterface
     /**
      * {@inheritdoc}
      */
-    public function sortBy(\Closure $sortRoutine)
+    public function sortBy(\Closure $sortRoutine): CollectionInterface
     {
         uksort($this->data, $sortRoutine);
 

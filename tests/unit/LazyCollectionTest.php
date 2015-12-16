@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types = 1);
 /**
  * This file is part of the Everon components.
  *
@@ -17,11 +17,9 @@ class LazyCollectionTest extends CollectionTest
 {
 
     /**
-     * @param array $data
-     *
-     * @return CollectionInterface
+     * @inheritdoc
      */
-    protected function createCollectionInstance(array $data)
+    protected function createCollectionInstance(array $data): CollectionInterface
     {
         $Loader = function () use ($data) {
             return $data;
