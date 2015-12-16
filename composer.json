@@ -3,7 +3,7 @@
   "description": "Everon Collection Component",
   "type": "library",
   "license": "MIT",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "authors": [{
     "name": "Oliwier Ptak",
     "email": "everonphp@gmail.com"
@@ -17,7 +17,7 @@
   },
   "require": {
     "php": ">=5.6",
-    "everon/utils": "dev-development"
+    "everon/utils": "dev-development-20"
   },
   "require-dev": {
     "phpunit/phpunit": "*",
