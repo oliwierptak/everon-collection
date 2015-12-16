@@ -17,28 +17,28 @@ interface CollectionInterface extends ArrayableInterface, \Countable, \ArrayAcce
     /**
      * @param mixed $item
      *
-     * @return self
+     * @return CollectionInterface
      */
     public function append($item): CollectionInterface;
 
     /**
      * @param array $data
      *
-     * @return self
+     * @return CollectionInterface
      */
     public function appendArray(array $data): CollectionInterface;
 
     /**
      * @param CollectionInterface $Collection
      *
-     * @return self
+     * @return CollectionInterface
      */
     public function appendCollection(CollectionInterface $Collection): CollectionInterface;
 
     /**
      * @param array $data
      *
-     * @return self
+     * @return CollectionInterface
      */
     public function collect(array $data): CollectionInterface;
 
@@ -65,7 +65,7 @@ interface CollectionInterface extends ArrayableInterface, \Countable, \ArrayAcce
     /**
      * @param $name
      *
-     * @return self
+     * @return CollectionInterface
      */
     public function remove($name): CollectionInterface;
 
@@ -73,7 +73,7 @@ interface CollectionInterface extends ArrayableInterface, \Countable, \ArrayAcce
      * @param $name
      * @param $value
      *
-     * @return self
+     * @return CollectionInterface
      */
     public function set($name, $value): CollectionInterface;
 
@@ -81,7 +81,7 @@ interface CollectionInterface extends ArrayableInterface, \Countable, \ArrayAcce
      * @param bool $ascending true
      * @param int $flags SORT_REGULAR
      *
-     * @return self
+     * @return CollectionInterface
      */
     public function sortValues(bool $ascending = true, int $flags = SORT_REGULAR): CollectionInterface;
 
@@ -89,14 +89,14 @@ interface CollectionInterface extends ArrayableInterface, \Countable, \ArrayAcce
      * @param bool $ascending true
      * @param int $flags SORT_REGULAR
      *
-     * @return self
+     * @return CollectionInterface
      */
     public function sortKeys(bool $ascending = true, int $flags = SORT_REGULAR): CollectionInterface;
 
     /**
      * @param \Closure $sortRoutine
      *
-     * @return self
+     * @return CollectionInterface
      */
     public function sortBy(\Closure $sortRoutine): CollectionInterface;
 
