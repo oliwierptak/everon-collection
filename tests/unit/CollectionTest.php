@@ -293,4 +293,5 @@ class CollectionTest extends MockeryTest
         }
     }
 
+
 }
