@@ -21,7 +21,7 @@ class LazyCollectionTest extends CollectionTest
      *
      * @return CollectionInterface
      */
-    protected function createCollectionInstance(array $data)
+    protected function createCollectionInstance(array $data): CollectionInterface
     {
         $Loader = function () use ($data) {
             return $data;
@@ -30,107 +30,107 @@ class LazyCollectionTest extends CollectionTest
         return new Lazy($Loader);
     }
 
-    public function test_collection_has_Countable_interface()
+    public function test_collection_has_Countable_interface(): void
     {
         parent::test_collection_has_Countable_interface();
     }
 
-    public function test_collection_has_ArrayAccess_interface()
+    public function test_collection_has_ArrayAccess_interface(): void
     {
         parent::test_collection_has_ArrayAccess_interface();
     }
 
-    public function test_collection_has_IteratorAggregate_interface()
+    public function test_collection_has_IteratorAggregate_interface(): void
     {
         parent::test_collection_has_IteratorAggregate_interface();
     }
 
-    public function test_collection_has_ArrayableInterface_interface()
+    public function test_collection_has_ArrayableInterface_interface(): void
     {
         parent::test_collection_has_ArrayableInterface_interface();
     }
 
-    public function test_append()
+    public function test_append(): void
     {
         parent::test_append();
     }
 
-    public function test_append_array()
+    public function test_append_array(): void
     {
         parent::test_append_array();
     }
 
-    public function test_append_collections()
+    public function test_append_collections(): void
     {
         parent::test_append_collections();
     }
 
-    public function test_get_with_default()
+    public function test_get_with_default(): void
     {
         parent::test_get_with_default();
     }
 
-    public function test_get_without_default()
+    public function test_get_without_default(): void
     {
         parent::test_get_without_default();
     }
 
-    public function test_has()
+    public function test_has(): void
     {
         parent::test_has();
     }
 
-    public function test_is_empty()
+    public function test_is_empty(): void
     {
         parent::test_is_empty();
     }
 
-    public function test_remove()
+    public function test_remove(): void
     {
         parent::test_remove();
     }
 
-    public function test_set()
+    public function test_set(): void
     {
         parent::test_set();
     }
 
-    public function test_append_nested_collections_deep()
+    public function test_append_nested_collections_deep(): void
     {
         parent::test_append_nested_collections_deep();
     }
 
-    public function test_sort_values_ascending()
+    public function test_sort_values_ascending(): void
     {
         parent::test_sort_values_ascending();
     }
 
-    public function test_sort_values_descending()
+    public function test_sort_values_descending(): void
     {
         parent::test_sort_values_descending();
     }
 
-    public function test_sort_keys_ascending()
+    public function test_sort_keys_ascending(): void
     {
         parent::test_sort_keys_ascending();
     }
 
-    public function test_sort_keys_descending()
+    public function test_sort_keys_descending(): void
     {
         parent::test_sort_keys_descending();
     }
 
-    public function test_sort_by()
+    public function test_sort_by(): void
     {
         parent::test_sort_by();
     }
 
-    public function test_foreach()
+    public function test_foreach(): void
     {
         parent::test_foreach();
     }
 
-    public function test_for()
+    public function test_for(): void
     {
         parent::test_for();
     }

@@ -30,7 +30,7 @@ class CollectionTest extends MockeryTest
      */
     protected $Collection;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->Collection = $this->createCollectionInstance($this->arrayFixture);
     }
@@ -38,34 +38,34 @@ class CollectionTest extends MockeryTest
     /**
      * @param array $data
      *
-     * @return Collection
+     * @return CollectionInterface
      */
-    protected function createCollectionInstance(array $data)
+    protected function createCollectionInstance(array $data): CollectionInterface
     {
         return new Collection($data);
     }
 
-    public function test_collection_has_Countable_interface()
+    public function test_collection_has_Countable_interface(): void
     {
         $this->assertInstanceOf('\Countable', $this->Collection);
     }
 
-    public function test_collection_has_ArrayAccess_interface()
+    public function test_collection_has_ArrayAccess_interface(): void
     {
         $this->assertInstanceOf('\ArrayAccess', $this->Collection);
     }
 
-    public function test_collection_has_IteratorAggregate_interface()
+    public function test_collection_has_IteratorAggregate_interface(): void
     {
         $this->assertInstanceOf('\IteratorAggregate', $this->Collection);
     }
 
-    public function test_collection_has_ArrayableInterface_interface()
+    public function test_collection_has_ArrayableInterface_interface(): void
     {
         $this->assertInstanceOf('Everon\Component\Utils\Collection\ArrayableInterface', $this->Collection);
     }
 
-    public function test_append()
+    public function test_append(): void
     {
         $this->Collection->append(100);
 
@@ -75,7 +75,7 @@ class CollectionTest extends MockeryTest
         $this->assertEquals($expected, $this->Collection->toArray());
     }
 
-    public function test_append_array()
+    public function test_append_array(): void
     {
         $new_data = [
             'foobar' => 100,
@@ -88,7 +88,7 @@ class CollectionTest extends MockeryTest
         $this->assertEquals($expected, $this->Collection->toArray());
     }
 
-    public function test_append_collections()
+    public function test_append_collections(): void
     {
         $new_data = [
             'foobar' => 100,
@@ -101,23 +101,23 @@ class CollectionTest extends MockeryTest
         $this->assertEquals($expected, $this->Collection->toArray());
     }
 
-    public function test_get_with_default()
+    public function test_get_with_default(): void
     {
         $this->assertEquals(25, $this->Collection->get('newkey', 25));
     }
 
-    public function test_get_without_default()
+    public function test_get_without_default(): void
     {
         $this->assertEquals(null, $this->Collection->get('newkey'));
     }
 
-    public function test_has()
+    public function test_has(): void
     {
         $this->assertEquals(false, $this->Collection->get('newkey'));
         $this->assertEquals(true, $this->Collection->get('foo'));
     }
 
-    public function test_is_empty()
+    public function test_is_empty(): void
     {
         $this->assertEquals(false, $this->Collection->isEmpty());
 
@@ -125,7 +125,7 @@ class CollectionTest extends MockeryTest
         $this->assertEquals(true, $EmptyCollection->isEmpty());
     }
 
-    public function test_remove()
+    public function test_remove(): void
     {
         unset($this->arrayFixture['foo']);
         $expected = $this->arrayFixture;
@@ -135,7 +135,7 @@ class CollectionTest extends MockeryTest
         $this->assertEquals($expected, $this->Collection->toArray());
     }
 
-    public function test_set()
+    public function test_set(): void
     {
         $this->Collection->set('newkey', 100);
 
@@ -145,7 +145,7 @@ class CollectionTest extends MockeryTest
         $this->assertEquals($expected, $this->Collection->toArray());
     }
 
-    public function test_collect()
+    public function test_collect(): void
     {
         $this->Collection->collect($this->arrayFixture);
 
@@ -154,7 +154,7 @@ class CollectionTest extends MockeryTest
         $this->assertEquals($expected, $this->Collection->toArray());
     }
 
-    public function test_append_nested_collections_deep()
+    public function test_append_nested_collections_deep(): void
     {
         $data = [
             'foo' => $this->createCollectionInstance([
@@ -185,7 +185,7 @@ class CollectionTest extends MockeryTest
         $this->assertEquals($expected, $Collection->toArray(true));
     }
 
-    public function test_sort_values_ascending()
+    public function test_sort_values_ascending(): void
     {
         $Collection = $this->createCollectionInstance([
             'bar' => 3,
@@ -204,7 +204,7 @@ class CollectionTest extends MockeryTest
         $this->assertTrue($expected === $Collection->toArray());
     }
 
-    public function test_sort_values_descending()
+    public function test_sort_values_descending(): void
     {
         $Collection = $this->createCollectionInstance([
             'bar' => 3,
@@ -223,7 +223,7 @@ class CollectionTest extends MockeryTest
         $this->assertTrue($expected === $Collection->toArray());
     }
 
-    public function test_sort_keys_ascending()
+    public function test_sort_keys_ascending(): void
     {
         $this->Collection->sortKeys();
 
@@ -236,7 +236,7 @@ class CollectionTest extends MockeryTest
         $this->assertTrue($expected === $this->Collection->toArray());
     }
 
-    public function test_sort_keys_descending()
+    public function test_sort_keys_descending(): void
     {
         $this->Collection->sortKeys(false);
 
@@ -249,7 +249,7 @@ class CollectionTest extends MockeryTest
         $this->assertTrue($expected === $this->Collection->toArray());
     }
 
-    public function test_sort_by()
+    public function test_sort_by(): void
     {
         $Collection = $this->createCollectionInstance([
             'fuzz' => 2,
@@ -270,14 +270,14 @@ class CollectionTest extends MockeryTest
         $this->assertTrue($expected === $Collection->toArray());
     }
 
-    public function test_foreach()
+    public function test_foreach(): void
     {
         foreach ($this->Collection as $key => $value) {
             $this->assertEquals($this->arrayFixture[$key], $value);
         }
     }
 
-    public function test_for()
+    public function test_for(): void
     {
         $Collection = $this->createCollectionInstance([
             'fuzz',
