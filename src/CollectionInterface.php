@@ -17,87 +17,42 @@ interface CollectionInterface extends ArrayableInterface, \Countable, \ArrayAcce
     /**
      * @param mixed $item
      *
-     * @return self
+     * @return \Everon\Component\Utils\Collection\ArrayableInterface
      */
-    public function append($item);
+    public function append($item): CollectionInterface;
+
+    public function appendArray(array $data): CollectionInterface;
+
+    public function appendCollection(CollectionInterface $Collection): CollectionInterface;
+
+    public function collect(array $data): CollectionInterface;
 
     /**
-     * @param array $data
-     *
-     * @return self
-     */
-    public function appendArray(array $data);
-
-    /**
-     * @param CollectionInterface $Collection
-     *
-     * @return self
-     */
-    public function appendCollection(CollectionInterface $Collection);
-
-    /**
-     * @param array $data
-     *
-     * @return self
-     */
-    public function collect(array $data);
-
-    /**
-     * @param $name
-     * @param null $default
+     * @param string $name
+     * @param mixed|null $default
      *
      * @return mixed|null
      */
-    public function get($name, $default = null);
+    public function get(string $name, $default = null);
+
+    public function has(string $name): bool;
+
+    public function isEmpty(): bool;
+
+    public function remove(string $name): CollectionInterface;
 
     /**
-     * @param $name
+     * @param string $name
+     * @param mixed $value
      *
-     * @return bool
+     * @return \Everon\Component\Utils\Collection\ArrayableInterface
      */
-    public function has($name);
+    public function set(string $name, $value): CollectionInterface;
 
-    /**
-     * @return bool
-     */
-    public function isEmpty();
+    public function sortValues($ascending = true, $flags = SORT_REGULAR): CollectionInterface;
 
-    /**
-     * @param $name
-     *
-     * @return self
-     */
-    public function remove($name);
+    public function sortKeys($ascending = true, $flags = SORT_REGULAR): CollectionInterface;
 
-    /**
-     * @param $name
-     * @param $value
-     *
-     * @return self
-     */
-    public function set($name, $value);
-
-    /**
-     * @param bool|true $ascending
-     * @param int $flags
-     *
-     * @return self
-     */
-    public function sortValues($ascending = true, $flags = SORT_REGULAR);
-
-    /**
-     * @param bool|true $ascending
-     * @param int $flags
-     *
-     * @return self
-     */
-    public function sortKeys($ascending = true, $flags = SORT_REGULAR);
-
-    /**
-     * @param \Closure $sortRoutine
-     *
-     * @return self
-     */
-    public function sortBy(\Closure $sortRoutine);
+    public function sortBy(\Closure $sortRoutine): CollectionInterface;
 
 }
