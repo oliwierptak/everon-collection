@@ -1,11 +1,9 @@
-# Everon Collection v1.0
+# Everon Collection v2.0
 Easier array handling, supports lazy loading and sorting.
 
 ## Works with
-* Php 5.6+
-* Php 7
-* Hhvm
+* Php 7.2+
 
 ## Test Driven
-See [tests](https://github.com/oliwierptak/everon-collection/blob/development/tests/unit/) for more examples.
+See [tests](https://github.com/oliwierptak/everon-collection/blob/master/tests/unit/) for more examples.
 
