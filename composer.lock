@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "everon/utils",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/oliwierptak/everon-utils.git",
-                "reference": "463327e593f822ed13bc1f5335e381c22f91336b"
+                "reference": "2a1894ec52ac66d11687ab778e008e639bba5674"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oliwierptak/everon-utils/zipball/463327e593f822ed13bc1f5335e381c22f91336b",
-                "reference": "463327e593f822ed13bc1f5335e381c22f91336b",
+                "url": "https://api.github.com/repos/oliwierptak/everon-utils/zipball/2a1894ec52ac66d11687ab778e008e639bba5674",
+                "reference": "2a1894ec52ac66d11687ab778e008e639bba5674",
                 "shasum": ""
             },
             "require": {
@@ -46,7 +46,7 @@
                 }
             ],
             "description": "Everon Utils Component",
-            "time": "2020-10-15T18:45:14+00:00"
+            "time": "2020-10-15T19:30:07+00:00"
         }
     ],
     "packages-dev": [
