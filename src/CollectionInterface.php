@@ -28,14 +28,19 @@ interface CollectionInterface extends ArrayableInterface, \Countable, \ArrayAcce
     public function collect(array $data): CollectionInterface;
 
     /**
-     * @param string $name
+     * @param string|int $name
      * @param mixed|null $default
      *
      * @return mixed|null
      */
-    public function get(string $name, $default = null);
+    public function get($name, $default = null);
 
-    public function has(string $name): bool;
+    /**
+     * @param string|int $name
+     *
+     * @return bool
+     */
+    public function has($name): bool;
 
     public function isEmpty(): bool;
 

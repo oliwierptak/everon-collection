@@ -100,7 +100,7 @@ class Collection implements CollectionInterface
         return $this;
     }
 
-    public function get(string $name, $default = null)
+    public function get($name, $default = null)
     {
         if ($this->has($name) === false) {
             return $default;
@@ -109,7 +109,7 @@ class Collection implements CollectionInterface
         return $this->offsetGet($name);
     }
 
-    public function has(string $name): bool
+    public function has($name): bool
     {
         return $this->offsetExists($name);
     }

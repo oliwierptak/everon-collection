@@ -102,14 +102,14 @@ class Lazy extends Collection
         return parent::collect($data);
     }
 
-    public function get(string $name, $default = null)
+    public function get($name, $default = null)
     {
         $this->actuate();
 
         return parent::get($name, $default);
     }
 
-    public function has(string $name): bool
+    public function has($name): bool
     {
         $this->actuate();
 
