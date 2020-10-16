@@ -47,12 +47,12 @@ interface CollectionInterface extends ArrayableInterface, \Countable, \ArrayAcce
     public function remove(string $name): CollectionInterface;
 
     /**
-     * @param string $name
+     * @param string|int $name
      * @param mixed $value
      *
-     * @return \Everon\Component\Utils\Collection\ArrayableInterface
+     * @return \Everon\Component\Collection\CollectionInterface
      */
-    public function set(string $name, $value): CollectionInterface;
+    public function set($name, $value): CollectionInterface;
 
     public function sortValues($ascending = true, $flags = SORT_REGULAR): CollectionInterface;
 

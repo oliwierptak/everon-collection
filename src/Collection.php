@@ -126,7 +126,7 @@ class Collection implements CollectionInterface
         return $this;
     }
 
-    public function set(string $name, $value): CollectionInterface
+    public function set($name, $value): CollectionInterface
     {
         $this->offsetSet($name, $value);
 
